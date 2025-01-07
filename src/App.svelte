@@ -13,7 +13,7 @@
       <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
     </a>
   </div>
-  <h1>Vite + Svelte</h1>
+  <h1 class="text-3xl font-bold">Vite + Svelte</h1>
 
   <div class="card">
     <Counter />
@@ -29,7 +29,7 @@
 </main>
 
 <style>
-  .logo {
+  /* .logo {
     height: 6em;
     padding: 1.5em;
     will-change: filter;
@@ -43,5 +43,5 @@
   }
   .read-the-docs {
     color: #888;
-  }
+  } */
 </style>
