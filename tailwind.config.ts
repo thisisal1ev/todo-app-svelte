@@ -4,7 +4,9 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{svelte,js,ts,jsx,tsx}",
-  ], theme: {
+  ],
+  darkMode: 'class',
+  theme: {
     extend: {
       fontFamily: {
         kanit: ['Kanit', 'sans-serif'],
