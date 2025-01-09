@@ -1,5 +1,20 @@
 <script lang="ts">
 	import { SearchIcon, SunIcon } from './components'
+
+	const storedTheme = localStorage.getItem('theme')
+	let isDarkMode: string = storedTheme === 'dark' ? 'dark' : 'light'
+
+	const toggleDarkMode = () => {
+		if (isDarkMode === 'light') {
+			document.documentElement.classList.add('dark')
+			localStorage.setItem('theme', 'dark')
+			isDarkMode = 'dark'
+		} else {
+			document.documentElement.classList.remove('dark')
+			localStorage.setItem('theme', 'light')
+			isDarkMode = 'light'
+		}
+	}
 </script>
 
 <main>
@@ -35,6 +50,7 @@
 					</select>
 
 					<button
+						onclick={toggleDarkMode}
 						title="toggle dark mode"
 						aria-label="Toggle dark mode"
 						class="rounded-md h-10 border-2 border-violet bg-violet p-2 active:bg-white transition-colors duration-300 group"
