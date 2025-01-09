@@ -1,8 +1,18 @@
 <script lang="ts">
 	import { SearchIcon, SunIcon } from './components'
+	import Todos from './components/Todos.svelte'
 
 	const storedTheme = localStorage.getItem('theme')
 	let isDarkMode: string = storedTheme === 'dark' ? 'dark' : 'light'
+	const todos: {
+		id: number
+		title: string
+		completed: boolean
+	}[] = $state([
+		{ id: 1, title: 'Note #1', completed: false },
+		{ id: 2, title: 'Note #2', completed: true },
+		{ id: 3, title: 'Note #3', completed: false },
+	])
 
 	const toggleDarkMode = () => {
 		if (isDarkMode === 'light') {
@@ -62,5 +72,7 @@
 				</div>
 			</div>
 		</div>
+
+		<Todos {todos} />
 	</section>
 </main>
