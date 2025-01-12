@@ -2,12 +2,7 @@
 	import { derived, writable, type Writable } from 'svelte/store'
 	import { PlusIcon, SearchIcon, SunIcon } from './components'
 	import Todos from './components/Todos.svelte'
-
-	interface Todo {
-		id: number
-		title: string
-		completed: boolean
-	}
+	import type { TodoProps } from './@types'
 
 	type Filter = 'all' | 'completed' | 'uncompleted'
 
@@ -15,7 +10,7 @@
 	let selectedFilter: Writable<Filter> = writable('all')
 	const storedTheme: string | null = localStorage.getItem('theme')
 	let isDarkMode: string = $state(storedTheme === 'dark' ? 'dark' : 'light')
-	const todos = writable<Todo[]>([
+	const todos = writable<TodoProps[]>([
 		{ id: 1, title: 'Note #1', completed: false },
 		{ id: 2, title: 'Note #2', completed: true },
 		{ id: 3, title: 'Note #3', completed: false },
@@ -24,7 +19,7 @@
 	const displayedTodos = derived(
 		[todos, searchValue, selectedFilter],
 		([$todos, $searchValue, $selectedFilter]) => {
-			return $todos.filter((todo: Todo) => {
+			return $todos.filter((todo: TodoProps) => {
 				const matchesSearch = todo.title
 					.toLowerCase()
 					.trim()
@@ -52,7 +47,7 @@
 	}
 
 	const removeTodo = (id: number): void => {
-		todos.set($todos.filter((todo: Todo) => todo.id !== id))
+		todos.set($todos.filter((todo: TodoProps) => todo.id !== id))
 	}
 </script>
 
