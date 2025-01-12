@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { derived, writable, type Writable } from 'svelte/store'
 	import { PlusIcon, SearchIcon, SunIcon } from './components'
-	import Todos from './components/Todos.svelte'
+	import { Todos, Modal } from './components'
 	import type { TodoProps } from './@types'
 
 	type Filter = 'all' | 'completed' | 'uncompleted'
 
-	let searchValue = writable('')
+	let searchValue = writable<string>('')
+	let isVisible: boolean = $state(false)
 	let selectedFilter: Writable<Filter> = writable('all')
 	const storedTheme: string | null = localStorage.getItem('theme')
 	let isDarkMode: string = $state(storedTheme === 'dark' ? 'dark' : 'light')
@@ -48,6 +49,10 @@
 
 	const removeTodo = (id: number): void => {
 		todos.set($todos.filter((todo: TodoProps) => todo.id !== id))
+	}
+
+	const openCloseModal = (): void => {
+		isVisible = !isVisible
 	}
 </script>
 
@@ -132,10 +137,15 @@
 				</p>
 			</div>
 		{/if}
+
+		{#if isVisible}
+			<Modal {openCloseModal} />
+		{/if}
 	</section>
 </main>
 
 <button
+	onclick={openCloseModal}
 	title="modal btn"
 	aria-label="Open modal"
 	class="bg-violet border-2 border-violet fixed bottom-8 right-8 md:right-20 lg:right-[12%] xl:right-[25%] p-3 rounded-full active:bg-grey transition-colors duration-300 outline-none group"
