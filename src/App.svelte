@@ -50,6 +50,10 @@
 			isDarkMode = 'light'
 		}
 	}
+
+	const removeTodo = (id: number): void => {
+		todos.set($todos.filter((todo: Todo) => todo.id !== id))
+	}
 </script>
 
 <main>
@@ -108,7 +112,7 @@
 		</div>
 
 		{#if $displayedTodos.length > 0}
-			<Todos todos={$displayedTodos} />
+			<Todos todos={$displayedTodos} {removeTodo} />
 		{:else}
 			<div class="flex items-center pt-10 flex-col select-none space-y-5">
 				{#if isDarkMode === 'dark'}

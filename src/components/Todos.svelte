@@ -8,9 +8,10 @@
 			title: string
 			completed: boolean
 		}[]
+		removeTodo: (id: number) => void
 	}
 
-	const { todos }: Props = $props()
+	const { todos, removeTodo }: Props = $props()
 </script>
 
 <div class="flex justify-center">
@@ -42,6 +43,7 @@
 					</button>
 
 					<button
+						onclick={() => removeTodo(todo.id)}
 						title="remove btn"
 						aria-label="Remove"
 						class="p-2 rounded-full transition-colors duration-300 hover:dark:bg-slate-100/15 flex items-center justify-center outline-none active:dark:bg-slate-100/30 hover:bg-black/15 active:bg-black/30"
