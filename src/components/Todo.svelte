@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { TodoProps } from '../@types'
 	import Checkbox from './Checkbox.svelte'
+	import IconButton from './IconButton.svelte'
 	import EditIcon from './icons/EditIcon.svelte'
 	import TrashIcon from './icons/TrashIcon.svelte'
 
@@ -27,25 +28,16 @@
 	<div
 		class="lg:opacity-0 flex transition-opacity duration-300 items-center space-x-2 group-hover:opacity-100"
 	>
-		<button
-			title="rename btn"
-			aria-label="Rename"
-			class="p-2 rounded-full transition-colors duration-300 hover:dark:bg-slate-100/15 flex justify-center items-center outline-none active:dark:bg-slate-100/30 hover:bg-black/15 active:bg-black/30"
-		>
+		<IconButton removeTodo={() => removeTodo(todo.id)}>
 			<EditIcon
 				class="dark:stroke-[#f7f7f7] stroke-black transition-colors duration-300"
 			/>
-		</button>
+		</IconButton>
 
-		<button
-			onclick={() => removeTodo(todo.id)}
-			title="remove btn"
-			aria-label="Remove"
-			class="p-2 rounded-full transition-colors duration-300 hover:dark:bg-slate-100/15 flex items-center justify-center outline-none active:dark:bg-slate-100/30 hover:bg-black/15 active:bg-black/30"
-		>
+		<IconButton removeTodo={() => removeTodo(todo.id)}>
 			<TrashIcon
 				class="dark:stroke-[#f7f7f7] stroke-black transition-colors duration-300"
 			/>
-		</button>
+		</IconButton>
 	</div>
 </li>

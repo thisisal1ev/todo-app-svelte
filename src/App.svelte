@@ -79,6 +79,7 @@
 							)
 						}}
 					/>
+
 					<SearchIcon
 						class="absolute right-4 top-2 transition-colors duration-300 fill-violet"
 					/>

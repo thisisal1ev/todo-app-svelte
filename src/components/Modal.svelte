@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ModalButton from './ModalButton.svelte'
+
 	interface Props {
 		openCloseModal: () => void
 	}
@@ -26,20 +28,11 @@
 		</div>
 
 		<div class="flex items-center justify-between space-x-3">
-			<button
-				onclick={openCloseModal}
-				type="button"
-				class="uppercase font-medium text-lg leading-[18px] py-2 px-5 border border-violet rounded-md bg-white dark:bg-mainBlack text-violet hover:text-white hover:!bg-violet active:!bg-white active:text-violet dark:active:!bg-mainBlack transition-colors duration-300"
-			>
+			<ModalButton isCancelBtn={true} onClick={openCloseModal}>
 				Cancel
-			</button>
+			</ModalButton>
 
-			<button
-				type="submit"
-				class="uppercase font-medium text-lg leading-[18px] py-2 px-5 border border-violet rounded-md text-white bg-violet hover:text-violet hover:!bg-white active:text-white active:!bg-violet transition-colors duration-300"
-			>
-				Apply
-			</button>
+			<ModalButton isCancelBtn={false}>Apply</ModalButton>
 		</div>
 	</form>
 </div>
