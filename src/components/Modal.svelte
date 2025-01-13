@@ -1,15 +1,38 @@
 <script lang="ts">
+	import { writable, type Writable } from 'svelte/store'
+	import type { TodoProps } from '../@types'
 	import ModalButton from './ModalButton.svelte'
 
 	interface Props {
 		openCloseModal: () => void
+		addTodo: (todo: TodoProps) => void
 	}
 
-	const { openCloseModal }: Props = $props()
+	const { openCloseModal, addTodo }: Props = $props()
+	let todoTitle: Writable<string> = writable('')
+
+	const onSubmit = (e?: Event): void => {
+		e?.preventDefault()
+
+		if (todoTitle) {
+			const newTodo = {
+				id: Date.now(),
+				title: $todoTitle,
+				completed: false,
+			}
+
+			addTodo(newTodo)
+		} else {
+			alert('Please enter note')
+		}
+
+		openCloseModal()
+	}
 </script>
 
 <div class="overlay">
 	<form
+		onsubmit={onSubmit}
 		class="mx-10 md:max-w-[500px] w-full py-[18px] border-transparent px-8 bg-white dark:bg-mainBlack rounded-lg border dark:border-grey transition-colors duration-300 flex flex-col"
 	>
 		<div class="grow h-auto mb-40">
@@ -23,6 +46,8 @@
 				maxlength="30"
 				type="text"
 				placeholder="Input your note..."
+				oninput={(e: Event) =>
+					todoTitle.set((e.target as HTMLInputElement).value)}
 				class="py-2 pl-4 rounded-md placeholder:dark:text-[#666] bg-transparent border-2 w-full pr-4 border-violet dark:border-grey transition-colors duration-300 placeholder:select-none focus:dark:border-violet"
 			/>
 		</div>
@@ -32,7 +57,7 @@
 				Cancel
 			</ModalButton>
 
-			<ModalButton isCancelBtn={false}>Apply</ModalButton>
+			<ModalButton isCancelBtn={false} onClick={onSubmit}>Apply</ModalButton>
 		</div>
 	</form>
 </div>

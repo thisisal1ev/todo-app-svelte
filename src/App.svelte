@@ -1,6 +1,13 @@
 <script lang="ts">
 	import { derived, writable, type Writable } from 'svelte/store'
-	import { PlusIcon, SearchIcon, SunIcon, Todos, Modal } from './components'
+	import {
+		PlusIcon,
+		SearchIcon,
+		MoonIcon,
+		SunIcon,
+		Todos,
+		Modal,
+	} from './components'
 	import type { Filter, TodoProps } from './@types'
 
 	let searchValue = writable<string>('')
@@ -50,6 +57,12 @@
 
 	const openCloseModal = (): void => {
 		isVisible = !isVisible
+	}
+
+	const addTodo = (todo: TodoProps): void => {
+		todos.update($todos => {
+			return [...$todos, todo]
+		})
 	}
 </script>
 
@@ -101,9 +114,13 @@
 						aria-label="Toggle dark mode"
 						class="rounded-md h-10 border-2 border-violet bg-violet p-2 active:bg-white transition-colors duration-300 group"
 					>
-						<SunIcon
-							class="fill-[#f7f7f7] group-active:fill-violet transition-colors duration-300"
-						/>
+						{#if isDarkMode === 'dark'}
+							<SunIcon
+								class="fill-[#f7f7f7] group-active:fill-violet transition-colors duration-300"
+							/>
+						{:else}
+							<MoonIcon />
+						{/if}
 					</button>
 				</div>
 			</div>
@@ -137,7 +154,7 @@
 		{/if}
 
 		{#if isVisible}
-			<Modal {openCloseModal} />
+			<Modal {openCloseModal} {addTodo} />
 		{/if}
 	</section>
 </main>
