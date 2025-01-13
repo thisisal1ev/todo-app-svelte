@@ -3,3 +3,5 @@ export interface TodoProps {
 	title: string
 	completed: boolean
 }
+
+export type Filter = 'all' | 'completed' | 'uncompleted'

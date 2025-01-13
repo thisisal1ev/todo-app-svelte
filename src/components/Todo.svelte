@@ -1,9 +1,7 @@
 <script lang="ts">
 	import type { TodoProps } from '../@types'
-	import Checkbox from './Checkbox.svelte'
-	import IconButton from './IconButton.svelte'
-	import EditIcon from './icons/EditIcon.svelte'
-	import TrashIcon from './icons/TrashIcon.svelte'
+	import { EditIcon, TrashIcon } from './icons'
+	import { Checkbox, IconButton } from './'
 
 	interface Props {
 		todo: TodoProps

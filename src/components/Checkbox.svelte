@@ -1,15 +1,12 @@
 <script lang="ts">
-	const {
-		isCompleted,
-		id,
-		title,
-		onChange,
-	}: {
+	interface Props {
 		isCompleted: boolean
 		id: number
 		title: string
 		onChange: () => void
-	} = $props()
+	}
+
+	const { isCompleted, id, title, onChange }: Props = $props()
 </script>
 
 <label class="flex items-center relative space-x-3">

@@ -1,10 +1,7 @@
 <script lang="ts">
 	import { derived, writable, type Writable } from 'svelte/store'
-	import { PlusIcon, SearchIcon, SunIcon } from './components'
-	import { Todos, Modal } from './components'
-	import type { TodoProps } from './@types'
-
-	type Filter = 'all' | 'completed' | 'uncompleted'
+	import { PlusIcon, SearchIcon, SunIcon, Todos, Modal } from './components'
+	import type { Filter, TodoProps } from './@types'
 
 	let searchValue = writable<string>('')
 	let isVisible: boolean = $state(false)
