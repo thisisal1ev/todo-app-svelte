@@ -33,7 +33,7 @@
 <div class="overlay">
 	<form
 		onsubmit={onSubmit}
-		class="mx-10 md:max-w-[500px] w-full py-[18px] border-transparent px-8 bg-white dark:bg-mainBlack rounded-lg border dark:border-grey transition-colors duration-300 flex flex-col"
+		class="mx-10 z-50 md:max-w-[500px] w-full py-[18px] border-transparent px-8 bg-white dark:bg-mainBlack rounded-lg border dark:border-grey transition-colors duration-300 flex flex-col"
 	>
 		<div class="grow h-auto mb-40">
 			<h3
@@ -47,7 +47,7 @@
 				type="text"
 				placeholder="Input your note..."
 				oninput={(e: Event) =>
-					todoTitle.set((e.target as HTMLInputElement).value)}
+					($todoTitle = (e.target as HTMLInputElement).value)}
 				class="py-2 pl-4 rounded-md placeholder:dark:text-[#666] bg-transparent border-2 w-full pr-4 border-violet dark:border-grey transition-colors duration-300 placeholder:select-none focus:dark:border-violet"
 			/>
 		</div>
