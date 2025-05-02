@@ -1,4 +1,4 @@
-# 📺 Todo app in svelte
+# 📺 Todo app in Svelte
 
 ---
 
